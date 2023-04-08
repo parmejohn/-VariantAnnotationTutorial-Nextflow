@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 #COPY environment.txt .
-COPY spec-file-qc.txt .
+COPY environments/* .
 
 ENV PATH="/root/miniconda3/bin:${PATH}"
 ARG PATH="/root/miniconda3/bin:${PATH}"
@@ -19,4 +19,11 @@ RUN conda config --add channels defaults
 RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
 
-RUN conda install -y --file spec-file-qc.txt
+RUN conda create -n qc -y --file spec-file-qc.txt
+RUN conda create -n assembly -y --file spec-file-assembly.txt
+RUN conda create -n mapping -y --file spec-file-mapping.txt
+RUN conda create -n kraken -y --file spec-file-kraken.txt
+RUN conda create -n var -y --file spec-file-var.txt
+RUN conda create -n anno -y --file spec-file-anno.txt
+RUN conda create -n phylo -y --file spec-file-phylo.txt
+RUN conda create -n voi -y --file spec-file-voi.txt

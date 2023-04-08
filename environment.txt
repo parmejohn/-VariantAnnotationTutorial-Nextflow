@@ -1,4 +1,0 @@
-@EXPLICIT
-https://conda.anaconda.org/bioconda/noarch/multiqc-1.13-pyhdfd78af_0.tar.bz2
-https://conda.anaconda.org/bioconda/noarch/fastqc-0.11.9-hdfd78af_1.tar.bz2
-
