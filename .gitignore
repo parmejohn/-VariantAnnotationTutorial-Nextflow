@@ -1,0 +1,7 @@
+./.nextflow.log
+./.nextflow.log*
+./work/
+./trimmed/
+./.nextflow/
+./Dockerfile
+./.git/
