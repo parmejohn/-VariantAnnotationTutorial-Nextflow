@@ -3,7 +3,10 @@ include { VARIANT_ANNO } from './modules/variant_anno'
 
 // set parameter values
 
+
 // Run the main function
-workflow NF_ VARIANT_ANNO {
+
+
+workflow {
     VARIANT_ANNO ()
 }
