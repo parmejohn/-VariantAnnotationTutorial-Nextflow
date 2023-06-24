@@ -1,5 +1,7 @@
 include { TRIM } from './trim'
+include { QC } from './qc'
 params.reads = "$projectDir/data/*_{R1,R2}.fastq.gz"
+
 
 log.info """\
 	Trimming
@@ -17,6 +19,10 @@ workflow VARIANT_ANNO {
 		.set { read_pairs_ch }
 	
 	TRIM (read_pairs_ch)
+	trimmed_ch = Channel.fromPath("$projectDir/trimmed/*.fastq.gz")
+	trimmed_ch.view()
+	qc_ch = QC (trimmed_ch.collect())
+
 }
 
 workflow.onComplete {
