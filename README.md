@@ -6,6 +6,7 @@ A Nextflow pipeline based off a variant annotation tutorial by [Sebastian Schmei
 - Docker
 
 ## Usage
+Clone the git repository into the directory of your choice, and run the following command from the cloned directory
 ```
 nextflow run main.nf
 ```
@@ -13,3 +14,5 @@ Ensure that Docker may run [without root privileges](https://docs.docker.com/eng
 
 ### Output files
 - ./trimmed/ = reads that have been trimmed with fastp
+  - fastqc/ = files generated from the fastqc command
+  - multiqc/ = contains a html report that summarizes the fastqc files and trimmed reads
