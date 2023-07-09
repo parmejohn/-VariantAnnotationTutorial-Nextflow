@@ -1,6 +1,13 @@
 params.fastqc = "$projectDir/trimmed/fastqc"
 params.multiqc = "$projectDir/trimmed/multiqc"
 
+log.info """\
+    ===================================
+	QC
+    ===================================
+    """
+    .stripIndent()
+
 process FASTQC {
 	publishDir params.fastqc, mode:'copy'
 

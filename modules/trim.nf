@@ -1,5 +1,12 @@
 params.trimmed = "$projectDir/trimmed"
 
+log.info """\
+    ===================================
+	Trimming
+    ===================================
+    """
+    .stripIndent()
+
 process TRIM {
 	publishDir params.trimmed, mode:'copy'
 
