@@ -1,7 +1,7 @@
-params.assembly = "$projectDir/trimmed/assembly"
-params.spades150 = "$projectDir/trimmed/assembly/spades-150"
-params.spadesog = "$projectDir/trimmed/assembly/spades-og"
-params.quast = "$projectDir/trimmed/assembly/quast"
+params.assembly = "$projectDir/assembly"
+params.spades150 = "$projectDir/assembly/spades-150"
+params.spadesog = "$projectDir/assembly/spades-og"
+params.quast = "$projectDir/assembly/quast"
 
 log.info """\
     ===================================
@@ -40,6 +40,6 @@ process QUAST {
 
 	script:
 	"""
-	quast -o . ${spades_target}/scaffolds.fasta ${spades_og}/scaffolds.fasta
+	/usr/local/bin/quast.py -o . ${spades_target}/scaffolds.fasta ${spades_og}/scaffolds.fasta
 	"""
 }

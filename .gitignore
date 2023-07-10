@@ -6,3 +6,4 @@ trimmed/
 Dockerfile
 .git/
 analysis/
+assembly/
