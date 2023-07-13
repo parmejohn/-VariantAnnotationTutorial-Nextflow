@@ -2,6 +2,7 @@ include { TRIM } from './trim'
 include { QC } from './qc'
 include { QUAST; SPADES } from './assembly'
 include { SPADES as SPADES_OG } from './assembly'
+include { MAPPING } from './mapping'
 
 //params
 params.reads = "$projectDir/data/*_{R1,R2}.fastq.gz"
@@ -20,15 +21,25 @@ workflow VARIANT_ANNO {
 
 	//Genome assembly
 	Channel
-		.fromFilePairs("$projectDir/trimmed/*_{R1,R2}.fastq.gz", checkIfExists: true)
+		.fromFilePairs("$projectDir/trimmed/anc*_{R1,R2}.fastq.gz", checkIfExists: true)
 		//.view()
-		.set { trimmed_samples_ch }
-	spades150_ch = SPADES (trimmed_samples_ch, "spades-150")
-	spadesog_ch = SPADES_OG (read_pairs_ch, "spades-og")
+		.set { trimmed_anc_samples_ch }
+	Channel
+		.fromFilePairs("$projectDir/data/anc*_{R1,R2}.fastq.gz", checkIfExists: true)
+		//.view()
+		.set { og_anc_samples_ch }
+
+	spades150_ch = SPADES (trimmed_anc_samples_ch, "spades-150")
+	spadesog_ch = SPADES_OG (og_anc_pairs_ch, "spades-og")
 
 	QUAST (spades150_ch, spadesog_ch)
 
 	//Mapping
+	Channel
+		.fromFilePairs("$projectDir/trimmed/evol*_{R1,R2}.fastq.gz", checkIfExists: true)
+		//.view()
+		.set { trimmed_evol_samples_ch }
+	MAPPING (trimmed_evol_samples_ch)
 
 	//Kraken
 
